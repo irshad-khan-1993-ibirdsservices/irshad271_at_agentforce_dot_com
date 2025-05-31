@@ -1,0 +1,49 @@
+<template>
+    <header style="background: aliceblue;">
+        <section class="slds-p-around_small">
+            <nav class="slds-grid slds-p-around_x-small">
+                <div class="slds-col slds-size_1-of-12 slds-grid slds-align_absolute-center ">
+                    <!-- <div class="cursor-pointer">
+                        <h1>Book Store</h1>
+                    </div> -->
+                    <div>
+                        <h1><a href="https://orgfarm-0a8c572b91-dev-ed.develop.my.site.com/bookcatalog/s/">Book Store</a></h1>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_3-of-12">
+                    <div>
+                    </div>
+                </div>
+                <!-- <div class="slds-col slds-size_5-of-12 d-grid ai-center"> -->
+                <div class="slds-col slds-size_5-of-12">
+                    <div>
+                        <lightning-input onchange={handleSearch} type="search" label="Search Books" variant="label-hidden"></lightning-input>
+                    </div>
+                </div>
+                <!-- <div class="slds-col slds-size_3-of-12  slds-grid"> -->
+                <div class="slds-col slds-size_3-of-12">
+                    <div class="slds-align_absolute-center cursor-pointer">
+                        <lightning-button
+                            label={loginLabel}
+                            variant="brand"
+                            onclick={handleLoginLogout}
+                        ></lightning-button>
+                        <span style="position:relative;">
+                            <lightning-button
+                                variant="brand"
+                                title="Add to Cart"
+                                icon-name="utility:cart"
+                                label=""
+                                onclick={handleCartPage}
+                                class="slds-m-left_x-small"
+                            ></lightning-button>
+                            <template if:true={isUserloggedIn}>
+                                <span class="cart-btn">{itemCout}</span>
+                            </template>
+                        </span>
+                    </div>
+                </div>
+            </nav>
+        </section>
+    </header>
+</template>

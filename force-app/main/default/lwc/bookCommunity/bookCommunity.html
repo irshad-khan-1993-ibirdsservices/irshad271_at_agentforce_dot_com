@@ -1,0 +1,181 @@
+<template>
+    <div class="slds-card slds-p-around_small">
+        <div class="slds-grid slds-wrap slds-p-vertical_large">
+            <div class="slds-col slds-size_1-of-6">
+                <lightning-input class="sf-checkbox"  name="checkboxsalesforce" type="checkbox" label="My Store"></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-6">
+                <lightning-input class="api-checkbox" checked name="checkboxapi" type="checkbox" label="Remote Store"></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-6">
+                <lightning-icon class="cursor-pointer" onclick={handleRefresh} icon-name='utility:refresh' alternative-text='refresh' size='small' title='refresh' style="cursor:pointer;"></lightning-icon>
+            </div>
+        </div>
+        <div class="slds-grid slds-wrap p-10">
+            <div class="slds-col p-10">
+                <div class="slds-grid slds-wrap p-10 slds-grid_align-spread row-gap-10   ">
+                    <template if:true={salesforcebooks}>
+                        <template for:each={salesforcebooks} for:item="book">
+                            <div class="slds-col w-30 p-10 card h-100 br-10" key={book.Id} style="height:17rem;">
+                                <div class="slds-grid slds-grid_align-spread">
+                                    <div class="slds-col slds-size_1-of-33 w-30 ">
+                                        <div class="img-box ">
+                                            <img class="img br-10" src={book.Book_Cover_c__c}/>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_2-of-33 w-60">
+                                        <div class="pt-10 pb-10">
+                                            <p>Book Name : <b>{book.Name}</b></p>
+                                            <!-- <p>Book Author : <b>{book.Book_Author__c}</b></p> -->
+                                            <p class="pb-10">Book ISBN : <b>{book.ProductCode}</b></p>
+                                            <p class="pb-10">Book Price : <b>${book.price}</b></p>
+                                            <lightning-button variant="brand" label="Add To Cart" title="Add To Cart" onclick={handleAddToCart}></lightning-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                    <template if:true={books}>
+                        <template for:each={books} for:item="book">
+                            <div class="slds-col w-30 p-10 card h-100 br-10 " key={book.Id} style="height: 20rem;">
+                                <!-- <div class="d-grid grid-6-12-fr w-100">
+                                    <div class="w-100 ">
+                                        <div class="img-box ofh">
+                                            <img class="img br-10 scale-1p1" src={book.image}/>
+                                        </div>
+                                    </div>
+                                    <div class="w-100">
+                                        <div class="pt-10 pb-10">
+                                            <p>Book Title : <b>{book.title}</b></p>
+                                            <p>Book Name : <b>{book.subtitle}</b></p>
+                                            <p>Book price : <b>{book.price}</b></p>
+                                            <p class="pb-10">Book ISBN : <b>{book.isbn13}</b></p>
+                                            <lightning-button variant="brand" label="Add To Cart" title="Add To Cart" onclick={handleAddToCart}></lightning-button>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="slds-grid slds-grid_align-spread">
+                                    <div class="slds-col slds-size_1-of-33 w-30 ">
+                                        <div class="img-box ofh">
+                                            <img class="img br-10 scale-1p1" src={book.image}/>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_2-of-33 w-60">
+                                        <div class="pt-10 pb-10">
+                                            <!-- <p>Book Title : <b>{book.title}</b></p> -->
+                                            <p>Book Name : <b>{book.subtitle}</b></p>
+                                            <p>Book price : <b>{book.price}</b></p>
+                                            <p class="pb-10">Book ISBN : <b>{book.isbn13}</b></p>
+                                            <lightning-button variant="brand" label="Add To Cart" title="Add To Cart" onclick={handleAddToCart}></lightning-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+            </div>
+            <!-- <div class="slds-col slds-size_1-of-2 b-greenn p-10">
+                <div class="slds-grid slds-wrap p-10 b-redd col-gap-10 row-gap-10">
+                    <template if:true={books}>
+                        <template for:each={books} for:item="book">
+                            <div class="slds-col w-50 b-greenn p-10 b-grey h-100 br-10" key={book.Id}>
+                                <div class="img-box">
+                                    <img class="img" src={book.image}/>
+                                </div>
+                                <div class="pt-10 pb-10">
+                                    <p>Book Title : <b>{book.title}</b></p>
+                                    <p>Book Name : <b>{book.subtitle}</b></p>
+                                    <p>Book price : <b>{book.price}</b></p>
+                                    <p class="pb-10">Book ISBN : <b>{book.isbn13}</b></p>
+                                    <lightning-button variant="brand" label="Add To Cart" title="Add To Cart" onclick={handleAddToCart}></lightning-button>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</template>
+
+<!-- ------------------------------- -->
+<!-- <template> -->
+    <!-- <header style="background: lightgrey;">
+        <section class="">
+            <nav class="slds-grid slds-p-around_x-small">
+                <div class="slds-col slds-size_1-of-12 slds-grid slds-align_absolute-center ">
+                    <div class="cursor-pointer">
+                        <h1>Book Store</h1>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_4-of-12">
+                    <div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_5-of-12 d-grid ai-center">
+                    <div>
+                        <lightning-input type="search" label="Search Books" variant="label-hidden"></lightning-input>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_2-of-12  slds-grid">
+                    <div class="slds-align_absolute-center  cursor-pointer" onclick={handleloginUser}>
+                        <lightning-icon icon-name='action:user' alternative-text='user' size='small' title='user'></lightning-icon>
+                    </div>
+                </div>
+            </nav>
+        </section>
+    </header> -->
+
+    <!-- <div class="slds-grid slds-wrap slds-p-vertical_large">
+        <div class="slds-col">
+            <lightning-input  name="checkboxsalesforce" onchange={handleCheckbox} type="checkbox" label="Books From Salesforce"></lightning-input>
+        </div>
+        <div class="slds-col">
+            <lightning-input checked name="checkboxapi" onchange={handleCheckbox} type="checkbox" label="Books From Api"></lightning-input>
+        </div>
+    </div>
+
+    <div class="slds-grid slds-wrap p-10" style="border: 1px solid #ccc;">
+        <div class="slds-col slds-size_1-of-2 b-greenn p-10">
+            <div class="slds-grid slds-wrap p-10 b-redd col-gap-10 row-gap-10">
+                <template if:true={salesforcebooks}>
+                    <template for:each={salesforcebooks} for:item="book">
+                        <div class="slds-col w-50 b-greenn p-10 b-grey h-100 br-10" key={book.Id}>
+                            <div class="img-box">
+                                <img class="img" src={book.Book_Cover_c__c}/>
+                            </div>
+                            <div class="pt-10 pb-10">
+                                <p>Book Name : <b>{book.Name}</b></p>
+                                <p>Book Author : <b>{book.Book_Author__c}</b></p>
+                                <p class="pb-10">Book ISBN : <b>{book.ProductCode}</b></p>
+                                <lightning-button variant="brand" label="Add To Cart" title="Add To Cart" onclick={handleAddToCart}></lightning-button>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-2 b-greenn p-10">
+            <div class="slds-grid slds-wrap p-10 b-redd col-gap-10 row-gap-10">
+                <template if:true={books}>
+                    <template for:each={books} for:item="book">
+                        <div class="slds-col w-50 b-greenn p-10 b-grey h-100 br-10" key={book.Id}>
+                            <div class="img-box">
+                                <img class="img" src={book.image}/>
+                            </div>
+                            <div class="pt-10 pb-10">
+                                <p>Book Title : <b>{book.title}</b></p>
+                                <p>Book Name : <b>{book.subtitle}</b></p>
+                                <p>Book price : <b>{book.price}</b></p>
+                                <p class="pb-10">Book ISBN : <b>{book.isbn13}</b></p>
+                                <lightning-button variant="brand" label="Add To Cart" title="Add To Cart" onclick={handleAddToCart}></lightning-button>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </div> -->
+<!-- </template> -->

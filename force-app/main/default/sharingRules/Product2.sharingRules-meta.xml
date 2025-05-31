@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingGuestRules>
+        <fullName>show_books_to_guest_users</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>show books to guest users</label>
+        <sharedTo>
+            <guestUser>book_portal</guestUser>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Books Record Type</value>
+        </criteriaItems>
+        <includeHVUOwnedRecords>false</includeHVUOwnedRecords>
+    </sharingGuestRules>
+    <sharingGuestRules>
+        <fullName>show_books_to_guest_users2</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>product sharing rules for show books to guest users</description>
+        <label>show books to guest users2</label>
+        <sharedTo>
+            <guestUser>bookportalfive</guestUser>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Books Record Type</value>
+        </criteriaItems>
+        <includeHVUOwnedRecords>false</includeHVUOwnedRecords>
+    </sharingGuestRules>
+    <sharingGuestRules>
+        <fullName>show_books_to_guest_users3</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>show books to guest users for book catalog site, Product Sharing Rule,</description>
+        <label>show books to guest users3</label>
+        <sharedTo>
+            <guestUser>bookcatalog</guestUser>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Books Record Type</value>
+        </criteriaItems>
+        <includeHVUOwnedRecords>false</includeHVUOwnedRecords>
+    </sharingGuestRules>
+</SharingRules>

@@ -1,0 +1,194 @@
+<template>
+    <header style="background: aliceblue;">
+        <section class="slds-p-around_small">
+            <nav class="slds-grid slds-p-around_x-small">
+                <div class="slds-col slds-size_1-of-12 slds-grid slds-align_absolute-center ">
+                    <div class="cursor-pointer">
+                        <h1>Book Store</h1>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_3-of-12">
+                    <div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_5-of-12 d-grid ai-center">
+                    <div>
+                        <lightning-input type="search" label="Search Books" variant="label-hidden"></lightning-input>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_3-of-12  slds-grid">
+                    <div class="slds-align_absolute-center  cursor-pointer">
+                        <lightning-button
+                            label={loginlabel}
+                            variant="brand"
+                            onclick={handleLogin}
+                        ></lightning-button>
+                        <span style="position:relative;">
+                            <lightning-button
+                                variant="brand"
+                                title="Add to Cart"
+                                icon-name="utility:cart"
+                                label=""
+                                onclick={handleOpenMyCart}
+                                class="slds-m-left_x-small"
+                            ></lightning-button>
+                            <template if:true={isUlogedIn}>
+                                <span class="cart-btn">{itemCout}</span>
+                            </template>
+                        </span>
+                    </div>
+                </div>
+            </nav>
+        </section>
+    </header>
+    <div class="slds-card slds-p-around_small" style="padding-left: 2.1rem; border:none;">
+        <div class="slds-grid slds-wrap slds-p-vertical_large">
+            <div class="slds-col slds-size_1-of-6">
+                <lightning-input class="sf-checkbox" onchange={handleChackbox} checked  name="checkboxsalesforce" type="checkbox" label="My Store"></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-6">
+                <lightning-input class="api-checkbox" onchange={handleChackbox}  name="checkboxapi" type="checkbox" label="Remote Store"></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-6">
+                <lightning-icon class="cursor-pointer" onclick={handleRefresh} icon-name='utility:refresh' alternative-text='refresh' size='small' title='refresh' style="cursor:pointer;"></lightning-icon>
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap p-10">
+        <div class="slds-col p-10">
+            <div class="slds-grid slds-wrap p-10 slds-grid_align-spread row-gap-10   ">
+                <template if:true={allBooks}>
+                    <template for:each={allBooks} for:item="book">
+                        <div class="slds-col w-30 p-10 card h-100 br-10" key={book.Id} style="height:17rem; background: aliceblue; ">
+                            <div class="slds-grid slds-grid_align-spread">
+                                <div class="slds-col slds-size_1-of-33 w-40 ">
+                                    <div class="img-box ">
+                                        <img class="img br-10" src={book.bookCoverImageUrl}/>
+                                        
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_2-of-33 w-57">
+                                    <!-- <div class="pt-10 pb-10"> -->
+                                    <div class="pt-10 pb-10 price-arrange">
+                                        <p>Book Name : <b>{book.bookName}</b></p>
+                                        <p class="pb-10">Book Price : <b>${book.bookPrice}</b></p>
+                                        <p class="pb-10">Book ISBN : <b>{book.productCode}</b></p>
+                                        <lightning-button data-productcode={book.productCode} variant="brand" label="Add To Cart" title="Add To Cart" onclick={handleAddToCart}></lightning-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+
+
+
+
+
+<!-- <template>
+    <header style="background: aliceblue;">
+        <section class="slds-p-around_small">
+            <nav class="slds-grid slds-p-around_x-small">
+                <div class="slds-col slds-size_1-of-12 slds-grid slds-align_absolute-center ">
+                    <div class="cursor-pointer">
+                        <h1>Book Store</h1>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_3-of-12">
+                    <div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_5-of-12 d-grid ai-center">
+                    <div>
+                        <lightning-input type="search" label="Search Books" variant="label-hidden"></lightning-input>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_3-of-12  slds-grid">
+                    <div class="slds-align_absolute-center  cursor-pointer">
+                        <lightning-button
+                            label={loginlabel}
+                            variant="brand"
+                            onclick={handleLogin}
+                        ></lightning-button>
+                        <lightning-button
+                            variant="brand"
+                            title="Add to Cart"
+                            icon-name="utility:cart"
+                            label=""
+                            onclick={handleAddToCart}
+                            class="slds-m-left_x-small"
+                        ></lightning-button>
+                    </div>
+                </div>
+            </nav>
+        </section>
+    </header>
+
+    <div class="slds-card slds-p-around_small" style="padding-left: 2.1rem; border:none;">
+        <div class="slds-grid slds-wrap slds-p-vertical_large">
+            <div class="slds-col slds-size_1-of-6">
+                <lightning-input class="sf-checkbox" checked  name="checkboxsalesforce" type="checkbox" label="My Store"></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-6">
+                <lightning-input class="api-checkbox"  name="checkboxapi" type="checkbox" label="Remote Store"></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-6">
+                <lightning-icon class="cursor-pointer" onclick={handleRefresh} icon-name='utility:refresh' alternative-text='refresh' size='small' title='refresh' style="cursor:pointer;"></lightning-icon>
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap p-10">
+        <div class="slds-col p-10">
+            <div class="slds-grid slds-wrap p-10 slds-grid_align-spread row-gap-10   ">
+                <template if:true={salesforcebooks}>
+                    <template for:each={salesforcebooks} for:item="book">
+                        <div class="slds-col w-30 p-10 card h-100 br-10" key={book.Id} style="height:17rem; background: aliceblue; ">
+                            <div class="slds-grid slds-grid_align-spread">
+                                <div class="slds-col slds-size_1-of-33 w-40 ">
+                                    <div class="img-box ">
+                                        <img class="img br-10" src={book.Book_Cover_c__c}/>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_2-of-33 w-57">
+                                    <div class="pt-10 pb-10">
+                                        <p>Book Name : <b>{book.Name}</b></p>
+                                        <p class="pb-10">Book ISBN : <b>{book.ProductCode}</b></p>
+                                        <p class="pb-10">Book Price : <b>${book.price}</b></p>
+                                        <lightning-button variant="brand" label="Add To Cart" title="Add To Cart" onclick={handleAddToCart}></lightning-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+                <template if:true={books}>
+                    <template for:each={books} for:item="book">
+                        <div class="slds-col w-30 p-10 card h-100 br-10 " key={book.Id} style="height: 17rem; background: antiquewhite; ">
+                            <div class="slds-grid slds-grid_align-spread">
+                                <div class="slds-col slds-size_1-of-33 w-40 ">
+                                    <div class="img-box ofh">
+                                        <img class="img br-10 scale-1p1" src={book.image}/>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_2-of-33 w-57">
+                                    <div class="pt-10 pb-10">
+                                        <p>Book Name : <b>{book.subtitle}</b></p>
+                                        <p>Book price : <b>{book.price}</b></p>
+                                        <p class="pb-10">Book ISBN : <b>{book.isbn13}</b></p>
+                                        <lightning-button variant="brand" label="Add To Cart" title="Add To Cart" onclick={handleAddToCart}></lightning-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </div>
+</template> -->

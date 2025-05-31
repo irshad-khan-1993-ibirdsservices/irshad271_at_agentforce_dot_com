@@ -1,0 +1,88 @@
+<template>
+    <section>
+        <div>
+            <h1 class="slds-text-align_center fs2 fw-b">Your Cart</h1>
+        </div>
+        
+        <div >
+            <div class="slds-grid row-gap-1rem slds-grid_vertical mw-100 w-100 slds-p-around_small ">
+                <div class="slds-grid mh-100 mw-100 ">
+                    <div class="slds-col slds-size_6-of-12">
+                        <h1 class="slds-text-heading_large fw-b">Item</h1>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12 slds-grid ai-center">
+                        <h1 class="slds-text-heading_large fw-b">Price</h1>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12">
+                        <h1 class="slds-text-heading_large fw-b">Quantity</h1>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12">
+                        <h1 class="slds-text-heading_large fw-b">Total</h1>
+                    </div>
+                </div>
+                <template for:each={myCartDataCopy} for:item="itm">
+                    <!-- <div class="border-top-bottom slds-grid mh-100 mw-100 " key={itm.Id} > -->
+                    <div class="border-top-bottom slds-grid mh-100 mw-100 " key={itm.Id} >
+                        <div class="slds-col slds-size_6-of-12">
+                            <div class="slds-grid">
+                                <div class="w-20 slds-p-around_small">
+                                    <img class="img" src={itm.bookCoverImageUrl} alt={itm.bookName} />
+                                </div>
+                                <div class=" w-80 slds-grid slds-grid_vertical jc-sa">
+                                    <h1 class="clr-darkseagreen fs2 fw-b">{itm.bookName}   </h1>
+                                    <h1 class="fs1p5">{itm.productCode}</h1>
+                                    <h1 class="fs1p2 clr-lightsalmon">${itm.bookPrice}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_2-of-12 slds-grid ai-center">
+                            <h1 class="slds-text-heading_large">${itm.bookPrice}</h1>
+                        </div>
+                        <div class="slds-col slds-size_2-of-12 slds-grid ai-center">
+                            <div >
+                                <div class="slds-text-heading_medium">
+                                    <lightning-button-group>
+                                        <lightning-button label="+" onclick={handleAddItemOrSubtractItem} data-procod={itm.productCode} name="add" class="additembtn"></lightning-button>
+                                        <lightning-button class="clr-black fw-b" label={itm.quantity} data-procoditemcount={itm.productCode} ></lightning-button>
+                                        <lightning-button label="-" onclick={handleAddItemOrSubtractItem} data-procod={itm.productCode} name="subtract" class="subtractitembtn"></lightning-button>
+                                    </lightning-button-group>
+                                    <!-- <button onclick={handleAddItemOrSubtractItem} data-procod={itm.productCode} name="add" class="additembtn">+</button>
+                                    <span data-procod={itm.productCode} >{itm.quantity}</span>
+                                    <button onclick={handleAddItemOrSubtractItem} data-procod={itm.productCode} name="subtract" class="subtractitembtn">-</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div style="position:relative;" class="slds-col slds-size_2-of-12 slds-grid ai-center slds-text-heading_large fw-b">
+                            <span>${itm.totalPrice}</span>
+                            <lightning-button-icon 
+                                style="position:relative; top:-2%;"
+                                icon-name="utility:close" 
+                                alternative-text="Remove Item" 
+                                variant="bare" 
+                                class="slds-p-left_xx-large slds-grid"
+                                onclick={handleRemoveItem}
+                                data-removebtn={itm.productCode}
+                            ></lightning-button-icon>
+                        </div>
+                    </div>
+                </template>
+                <div class="slds-grid mh-100 mw-100 border-top-bottom">
+                    <div class="slds-col slds-size_7-of-12"></div>
+                    <div class="slds-col slds-size_3-of-12 ">
+                        <h1 class="slds-text-heading_large">Grand Total :</h1>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12">
+                        <h1 class="slds-text-heading_large">${grandTotalAmount}</h1>
+                    </div>
+                </div>
+                <div class="slds-grid mh-100 mw-100">
+                    <div class="slds-col slds-size_7-of-12"></div>
+                    <div class="slds-col slds-size_3-of-12 "></div>
+                    <div class="slds-col slds-size_2-of-12">
+                        <lightning-button class="" label="Place Order"></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
