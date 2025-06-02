@@ -1,3 +1,184 @@
 .br{
     border: 1px solid red;
 }
+.custom-container{
+	color : black;
+}
+
+.h-285{
+	height: 285px;
+}
+.d-f_ai-c_jc-c{
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	flex-direction: column;
+	border-radius: 20px;
+}
+
+.br-10{
+	border-radius: 10px;
+}
+
+.b-red{
+	border: 1px solid red;
+}
+
+.d-grid{
+    display: grid;
+}
+.ai-center{
+    align-items: center;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
+.h-100{
+	height: 100%;
+}
+.w-100{
+	width: 100%;
+}
+.h-50{
+	height: 50%;
+}
+.w-50{
+	width: 45%;
+}
+.b-green{
+	border: 1px solid rgb(5, 245, 5);
+}
+.p-10{
+	padding: 10px;
+}
+.b-red{
+	border: 1px solid red;
+}
+
+.b-grey{
+	border: 1px solid grey;
+}
+.img-box{
+	height: 20rem;
+	width: 100%;
+}
+.img{
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+.col-gap-10{
+	column-gap: 10px;
+}
+.row-gap-10{
+    /* row-gap: 10px; */
+    row-gap: 1.4rem;
+}
+.pl-10{
+	padding-left: 10px;
+}
+.pr-10{
+	padding-right: 10px;
+}
+.pt-10{
+	padding-top: 10px;
+}
+.pb-10{
+	padding-bottom: 10px;
+}
+.w-30{
+	width: 32%;
+	max-width: 32%;
+}
+.w-25{
+	width: 25%;
+	max-width: 25%;
+}
+.w-20{
+	width: 20%;
+	max-width: 20%;
+}
+.w-80{
+	width: 80%;
+	max-width: 80%;
+}
+.w-45{
+	width: 45%;
+}
+.w-60{
+	width: 65%;
+	max-width: 65%;
+}
+.card {
+  /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); */
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+}
+.scale-1p1{
+	scale: 1.1;
+}
+.ofh{
+	overflow: hidden;
+}
+.d-grid{
+	display: grid;
+}
+.grid-6-12-fr{
+	grid-template-columns: 6fr 12fr;
+}
+
+.w-40{
+	width: 40%;
+	max-width: 40%;
+}
+.w-57{
+	width: 57%;
+	max-width: 57%;
+}
+.fs2{
+	font-size: 2rem;
+}
+.fs1p5{
+	font-size: 1.5rem;
+}
+.fs1p2{
+	font-size: 1.2rem;
+}
+.fw-b{
+	font-weight: bold;
+}
+.mw-100{
+	max-width: 100%;
+}
+.mh-100{
+	max-height: 100%;
+}
+.w-75{
+	width: 75%;
+}
+.jc-sa{
+	justify-content: space-around;
+}
+.row-gap-1rem{
+	row-gap: 1rem;
+}
+.border-top-bottom{
+	border-top: 1px solid #ccc;
+	/* border-bottom: 1px solid #ccc; */
+}
+.clr-lightsalmon{
+	color: lightsalmon;
+}
+.clr-darkseagreen{
+	color: darkseagreen;
+}
+.clr-black{
+	color: black;
+}
+
+/*Add the class name below to the lightning-icon element.*/
+.custom-icon-remove { 
+ --slds-c-icon-color-foreground: #3b3b3b;
+ --slds-c-icon-color-background: #ffffff;
+}

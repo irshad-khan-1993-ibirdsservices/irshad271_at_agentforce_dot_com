@@ -52,9 +52,9 @@
                             <div >
                                 <div class="slds-text-heading_medium">
                                     <lightning-button-group>
-                                        <lightning-button label="+" onclick={handleAddItemOrSubtractItem} data-procod={itm.productCode} name="add" class="additembtn"></lightning-button>
+                                        <lightning-button data-isitemsf={itm.sf} label="+" onclick={handleAddItemOrSubtractItem} data-procod={itm.productCode} name="add" class="additembtn"></lightning-button>
                                         <lightning-button class="clr-black fw-b" label={itm.quantity} data-procoditemcount={itm.productCode} ></lightning-button>
-                                        <lightning-button label="-" onclick={handleAddItemOrSubtractItem} data-procod={itm.productCode} name="subtract" class="subtractitembtn"></lightning-button>
+                                        <lightning-button data-isitemsf={itm.sf} label="-" onclick={handleAddItemOrSubtractItem} data-procod={itm.productCode} name="subtract" class="subtractitembtn"></lightning-button>
                                     </lightning-button-group>
                                 </div>
                             </div>
@@ -69,6 +69,7 @@
                                 class="slds-p-left_xx-large slds-grid"
                                 onclick={handleRemoveItem}
                                 data-removebtn={itm.productCode}
+                                data-isitemsf={itm.sf}
                             ></lightning-button-icon>
                         </div>
                     </div>

@@ -22,6 +22,7 @@ export default class BookCommunityHomePage extends NavigationMixin(LightningElem
     }
     async x(){
         await this.getAllBook();
+        this.isuserloggedin = await isUserLoggedIn();
         this.handleChackbox();
     }
     // async setAllThings(){
@@ -121,12 +122,7 @@ export default class BookCommunityHomePage extends NavigationMixin(LightningElem
         }else if(sfcheckbox.checked != true && apicheckbox.checked != true){
             this.allBooks = null;
         }
-    } 
-    // async checkUserLoggedIn(){
-    //     console.log('$checkUserLoggedIn called');
-    //     let loggedIn = await isUserLoggedIn();
-    //     return loggedIn;
-    // }
+    }
     // async handleLogin(){
     //     console.log('$handleLoginP called');
     //     let isLoggedIn = await this.checkUserLoggedIn();
@@ -174,16 +170,22 @@ export default class BookCommunityHomePage extends NavigationMixin(LightningElem
     //             console.error('Logout error', error);
     //         });
     // } 
+    async checkUserLoggedIn(){
+        console.log('$checkUserLoggedIn called');
+        let loggedIn = await isUserLoggedIn();
+        return loggedIn;
+    } 
     handleAddToCart(e){
         console.log('$handleAddToCart called');
+        // this.isuserloggedin = checkUserLoggedIn();
         let productcode = e.target.dataset.productcode;
         let isSalesforceProduct = this.allBooks.find(book => book.productCode == productcode).sf;
         this.storeBooksInLocalStorage(isSalesforceProduct, productcode);
     }
     storeBooksInLocalStorage(isSalesforceProduct, productcode){
         console.log('$handleAddToCart called');
-        let cart = JSON.parse(localStorage.getItem('cart')) ?? {};
-        const key = isSalesforceProduct ? `sf_${productcode}` : `api_${productcode}`;
+        let cart = JSON.parse(localStorage.getItem('cart')) || {};
+        let key = isSalesforceProduct ? `sf_${productcode}` : `api_${productcode}`;
         cart[key] = (parseInt(cart[key]) || 0) + 1;
         localStorage.setItem('cart', JSON.stringify(cart));
     }

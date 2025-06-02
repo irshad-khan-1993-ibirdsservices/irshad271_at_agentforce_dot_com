@@ -35,7 +35,9 @@
                                         <p>Book Name : <b>{book.bookName}</b></p>
                                         <p class="pb-10">Book Price : <b>${book.bookPrice}</b></p>
                                         <p class="pb-10">Book ISBN : <b>{book.productCode}</b></p>
-                                        <lightning-button data-productcode={book.productCode} variant="brand" label="Add To Cart" title="Add To Cart" onclick={handleAddToCart}></lightning-button>
+                                        <template if:true={isuserloggedin}>
+                                            <lightning-button data-productcode={book.productCode} variant="brand" label="Add To Cart" title="Add To Cart" onclick={handleAddToCart}></lightning-button>
+                                        </template>
                                     </div>
                                 </div>
                             </div>
